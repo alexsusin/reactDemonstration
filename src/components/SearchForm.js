@@ -16,7 +16,7 @@ export class SearchForm extends React.Component {
         fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=${this.state.inputMovie}`)
             .then(res => res.json()).then(results => {
                 const { Search, totalResults } = results;
-                console.log({ Search, totalResults })
+                //console.log({ Search, totalResults })
                 this.props.onResults(Search)
             }
             )
@@ -29,15 +29,12 @@ export class SearchForm extends React.Component {
                     <div className="control">
                         <input
                             className="input"
-                            type="text"
-                            placeholder="Busca una película"
+                            type="text"                            
                             onChange={this.handleChange}
                         />
                     </div>
                     <div className="control">
-                        <button className="button is-info">
-                            Search
-                    </button>
+                        <button className="button is-info">Search</button>
                     </div>
                 </div>
             </form>

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { render } from '@testing-library/react';
 
 export class Movie extends React.Component {
     static propTypes = {
@@ -9,6 +8,7 @@ export class Movie extends React.Component {
         year: PropTypes.string,
         poster: PropTypes.string
     }
+
     render() {
         return (
             <a href={`?id=${this.props.id}`} className="card">

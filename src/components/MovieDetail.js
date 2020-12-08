@@ -39,8 +39,11 @@ export class MovieDetail extends React.Component {
                     <div className="content" id="paddingStyle">
                         <h1 className="title is-1">{this.state.movie.Title} ({this.state.movie.Year})</h1>
                         <p><strong>Plot: </strong>{this.state.movie.Plot}</p>
+                        <p><strong>Director: </strong>{this.state.movie.Director}</p>
+                        <p><strong>Actors: </strong>{this.state.movie.Actors}</p>
+                        <p><strong>Date: </strong> {this.state.movie.Released}</p>
                         <p><strong>Metascore: </strong> {this.state.movie.Metascore}</p>
-                        <button class="button is-normal">Volver atrás</button>
+                        <button className="button is-normal">Volver</button>
                     </div>                    
                 </div>                
             </article>

@@ -26,7 +26,7 @@ class App extends React.Component {
 							id={movie.imdbID}
 							title={movie.Title}
 							year={movie.Year}
-							poster={movie.Poster}
+							poster={movie.Poster}							
 						/>
 					</div>
 				)
@@ -42,11 +42,11 @@ class App extends React.Component {
 		}
 		return (
 			<div className="App">
-				<Title>Buscador de películas</Title>
+				<Title>Buscador de películas y series</Title>
 				<div className="searchForm-wrapper">
 					<SearchForm onResults={this.handleResults} />
 				</div>
-				{this.state.search ? <div className="moviesList">{this.renderResults()}</div>  : <small>Busca una película o serie!</small>}
+				{this.state.search ? <div className="moviesList">{this.renderResults()}</div> : <h4>Busca una película o serie!</h4>}
 			</div>
 		);
 	}
