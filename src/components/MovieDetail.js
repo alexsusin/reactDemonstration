@@ -1,29 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withRouter } from "react-router";
 
 const API_KEY = 'd1bd0cfd';
 
-export class MovieDetail extends React.Component {
+class MovieDetail extends React.Component {
 
-    static propTypes = {
-        id: PropTypes.string,
-    }
+    // static propTypes = {
+    //     match: PropTypes.shape({
+    //         params: PropTypes.object
+    //     })
+    // }
 
     state = {
         movie: {}
     }
 
-    viewMovieDetails({ id }) {
+    viewMovieDetails({ id }) {        
         fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&i=${id}`)
             .then(res => res.json()).then(movie => {
-                console.log(movie)
+                //console.log(movie)
                 this.setState({ movie })
             }
             )
     }
 
-    componentDidMount() {
-        const { id } = this.props;
+    componentDidMount() {        
+        const { id } = this.props.match.params;
         this.viewMovieDetails({ id });
     }
 
@@ -43,10 +46,12 @@ export class MovieDetail extends React.Component {
                         <p><strong>Actors: </strong>{this.state.movie.Actors}</p>
                         <p><strong>Date: </strong> {this.state.movie.Released}</p>
                         <p><strong>Metascore: </strong> {this.state.movie.Metascore}</p>
-                        <button className="button is-normal">Volver</button>
-                    </div>                    
-                </div>                
+                        <button onClick={() => this.props.history.goBack()}>Volver</button>                        
+                    </div>
+                </div>
             </article>
         )
     }
 }
+
+export default withRouter(MovieDetail);

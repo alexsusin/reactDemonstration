@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 const API_KEY = 'd1bd0cfd';
 
@@ -20,7 +20,7 @@ export class SearchForm extends React.Component {
                 this.props.onResults(Search)
             }
             )
-    }
+    }    
 
     render() {
         return (

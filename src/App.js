@@ -1,56 +1,28 @@
 import React from 'react';
 import './App.css';
-import { Title } from './components/Title';
-import { SearchForm } from './components/SearchForm'
-import { Movie } from './components/Movie'
-import { MovieDetail } from './components/MovieDetail'
+import { Switch, Route } from 'react-router-dom';
+import MovieDetail  from './components/MovieDetail';
+import { HomePage } from './components/HomePage';
+
 import 'bulma/css/bulma.css';
 
+
 class App extends React.Component {
-	state = {
-		results: [],
-		search: false
-	}
-
-	handleResults = (results) => {
-		this.setState({ results, search: true });
-	}
-
-	renderResults() {
-		return typeof this.state.results === "undefined"
-			? <p>Sin resultados</p> :
-			this.state.results.map(movie => {
-				return (
-					<div className="movieItem" key={movie.imdbID}>
-						<Movie
-							id={movie.imdbID}
-							title={movie.Title}
-							year={movie.Year}
-							poster={movie.Poster}							
-						/>
-					</div>
-				)
-			})
-	}
-
 
 	render() {
-		const url = new URL(document.location);
-		const idExists = url.searchParams.has("id");
-		if (idExists) {
-			return <MovieDetail id={url.searchParams.get("id")} />
-		}
+		// const url = new URL(document.location);
+		// if (url.searchParams.has("id")) {
+		// 	return <MovieDetail id={url.searchParams.get("id")} />
+		// }
 		return (
 			<div className="App">
-				<Title>Buscador de películas y series</Title>
-				<div className="searchForm-wrapper">
-					<SearchForm onResults={this.handleResults} />
-				</div>
-				{this.state.search ? <div className="moviesList">{this.renderResults()}</div> : <h4>Busca una película o serie!</h4>}
+				<Switch>
+					<Route exact path="/" component={HomePage} />
+					<Route path="/movieDetail/:id" component={MovieDetail} />
+				</Switch>
 			</div>
 		);
 	}
-
 }
 
 export default App;
